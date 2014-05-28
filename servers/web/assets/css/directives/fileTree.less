@@ -1,0 +1,128 @@
+.file-tree .file-tree {
+  margin-left: 1em;
+}
+
+.tree-bg {
+  position: absolute;
+  top: 0; right: 0; left: -999px;
+  height: 26px;
+}
+
+.tree-entry {
+  .tree-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: -999px;
+    height: 26px;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .tree-inner {
+    line-height: 26px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    .tree-icon {
+      line-height: 22px;
+    }
+    
+    .tree-actions {
+      visibility: hidden;
+      position: absolute;
+      top: -1px;
+      right: 0;
+
+      .btn {
+        padding: 1px 2px;
+      }
+      
+      .btn > .fa {
+        color: #666;
+        font-size: 1.3em;
+        line-height: 1.3em;
+      }
+
+      .btn:hover > .fa {
+        color: #333;
+      }
+    }
+
+    .tree-remover {
+      visibility: hidden;
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      z-index: 1;
+
+      &:hover {
+        color: red;
+      }
+    }
+    
+    &:hover {
+      cursor: pointer;
+      
+      .tree-actions {
+        visibility: visible;
+      }
+
+      .tree-remover {
+        visibility: visible;
+      }
+    }
+  }
+  
+  .tree-inner:hover ~ .tree-bg {
+    background-color: #eeeeee;
+  }
+  
+  &.active {
+    & > .tree-bg {
+      background-color: #0088cc;
+    }
+    
+    & > .tree-inner {
+      color: #f5f5f5;
+    }
+    
+    &:hover > .tree-bg {
+      background-color: #277ba5;
+    }
+
+    .tree-actions .btn > .fa {
+      color: #f5f5f5;
+    }
+
+    .tree-actions .btn:hover > .fa {
+      color: #e5e5e5;
+    }
+  }
+
+  &.open {
+    & > .tree-inner > .tree-filename {
+      font-weight: bold;
+    }
+  }
+  
+  &.collapsed>.file-tree {
+    display: none;
+  }
+}
+
+.shift-key .tree-inner:hover .tree-open-right .fa {
+  color: #0088cc;
+}
+
+.control-key .tree-inner:hover .tree-open-down .fa {
+  color: #0088cc;
+}
+
+.shift-key.control-key .tree-entry.open .tree-inner:hover .tree-filename {
+  color: red;
+}

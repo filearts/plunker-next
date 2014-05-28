@@ -1,0 +1,148 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="reject()">&times;</button>
+  <h4 ng-bind="step.title"></h4>
+</div>
+
+<div class="modal-body" ng-switch="step.id">
+
+  <div ng-switch-when="identities">
+    <p>
+      Link your social profiles here so that you can log in using any of these
+      services. Also, certain features of Plunker will only work if you have
+      the related service linked.
+    </p>
+    <p class="alert alert-danger" ng-if="state.error">
+      <button type="button" class="close" ng-click="state.error=null" aria-hidden="true">&times;</button>
+      <span ng-bind="state.error"></span>
+    </p>
+    <div class="row">
+      <p class="col-xs-3 social-provider" ng-repeat="provider in providers">
+        <button class="btn btn-md social-login" ng-class="{active: identities[provider.id], 'btn-default': !identities[provider.id], 'btn-success': identities[provider.id]}" ng-click="toggle(provider.id)" ng-disabled="state.authInProgress">
+          <i class="fa fa-fw fa-4x" ng-class="provider.icon" style="display: block"></i>
+          <span ng-bind="provider.name"></span>
+        </button>
+      </p>
+    </div>
+    <p>
+      Once you have linked all the profiles you want, hit next.
+    </p>
+  </div>
+  
+  <div ng-switch-when="profile">
+    <p>
+      Build your profile.
+    </p>
+    <p class="alert alert-danger" ng-if="state.error">
+      <button type="button" class="close" ng-click="state.error=null" aria-hidden="true">&times;</button>
+      <span ng-bind="state.error"></span>
+    </p>
+    <form class="form" name="profileForm" novalidate>
+      <div class="form-group">
+        <label>Username:</label>
+        <div class="input-group">
+          <i ng-if="profileForm.username.$error.required" class="fa fa fa-times-circle input-validity text-danger" tooltip="Username is required" tooltip-append-to-body="true"></i>
+          <i ng-if="profileForm.username.$error.checking" class="fa fa fa-refresh fa-spin input-validity text-muted" tooltip="Checking if user already exists" tooltip-attach-to-body></i>
+          <i ng-if="profileForm.username.$error.exists" class="fa fa fa-times-circle input-validity text-danger" tooltip="A user already exists with that username" tooltip-append-to-body="true"></i>
+          <i ng-if="profileForm.username.$error.pattern" class="fa fa fa-times-circle input-validity text-danger" tooltip="Invalid username: only letterns and numbers allowed" tooltip-append-to-body="true"></i>
+          <i ng-if="profileForm.username.$error.minlength" class="fa fa fa-times-circle input-validity text-danger" tooltip="Invalid username: must be at least 3 characters" tooltip-append-to-body="true"></i>
+          <i ng-if="profileForm.username.$error.maxlength" class="fa fa fa-times-circle input-validity text-danger" tooltip="Invalid username: cannot be more than 40 characters" tooltip-append-to-body="true"></i>
+          <i ng-if="profileForm.username.$valid" class="fa fa fa-check-circle input-validity text-success"></i>
+          
+          <input type="text" class="form-control" ng-model="profile.username" name="username" ng-pattern="/^[a-zA-Z0-9][-_a-zA-Z0-9]+[a-zA-Z0-9]+$/" ng-minlength="3" ng-maxlength="40" ng-model-options="{ updateOn: 'default blur', debounce: { default: 200, blur: 0 } }" plunker-user-exists required>
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="profileData.username.length < 2" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu pull-right">
+              <li ng-repeat="option in profileData.username">
+                <a ng-click="profile.username=option.value">
+                  <span ng-bind="option.value"></span>
+                  <em ng-bind-template="({{option.provider}})"></em>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <div class="input-group">
+          <textarea rows="2" class="form-control" ng-model="profile.description" name="description"></textarea>
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="profileData.description.length < 2" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu pull-right">
+              <li ng-repeat="option in profileData.description">
+                <a ng-click="profile.description=option.value">
+                  <span ng-bind="option.value"></span>
+                  <em ng-bind-template="({{option.provider}})"></em>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Company:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="profile.company" name="company">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="profileData.company.length < 2" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu pull-right">
+              <li ng-repeat="option in profileData.company">
+                <a ng-click="profile.company=option.value">
+                  <span ng-bind="option.value"></span>
+                  <em ng-bind-template="({{option.provider}})"></em>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Location:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="profile.location" name="location">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="profileData.location.length < 2" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu pull-right">
+              <li ng-repeat="option in profileData.location">
+                <a ng-click="profile.location=option.value">
+                  <span ng-bind="option.value"></span>
+                  <em ng-bind-template="({{option.provider}})"></em>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Website:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="profile.website_url" name="website_url">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="profileData.website_url.length < 2" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu pull-right">
+              <li ng-repeat="option in profileData.website_url">
+                <a ng-click="profile.website_url=option.value">
+                  <span ng-bind="option.value"></span>
+                  <em ng-bind-template="({{option.provider}})"></em>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+</div>
+
+
+<div class="modal-footer">
+  <div class="pull-right">
+    <button ng-if="step.prev" class="btn btn-default" ng-click="back()" ng-bind="step.prev"></button>
+    <button ng-if="step.next" ng-disabled="step.validate && !step.validate()" class="btn btn-primary" ng-click="advance()" ng-bind="step.next">Next</button>
+  </div>
+  
+  <div class="pull-left">
+    <button class="btn btn-link" ng-click="reject('Clicked cancel')">Cancel</button>
+  </div>
+</div>

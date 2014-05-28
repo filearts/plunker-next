@@ -1,0 +1,21 @@
+<div class="pane-header">
+  <div class="pane-title" ng-click="workspace.activate(paneNum)">Live preview</div>
+  <div class="pane-actions">
+  	<div class="pane-options">
+	  	<button class="btn btn-xs btn-link" ng-class="{active: showQRCode}" ng-click="toggleQRCode()" tooltip="Show QR code for preview link" tooltip-placement="bottom" tooltip-append-to-body="true"><i class="fa fa-qrcode"></i></button>
+	  	<button class="btn btn-xs btn-link" ng-class="{active: showPreviewWindow}" ng-click="togglePreviewWindow()" tooltip="Toggle the preview in a separate window" tooltip-placement="bottom" tooltip-append-to-body="true"><i class="fa fa-external-link-square"></i></button>
+	  	<button class="btn btn-xs btn-link" ng-class="{active: settings.previewer.autoRefresh}" ng-click="settings.previewer.autoRefresh = !settings.previewer.autoRefresh" tooltip="Toggle auto-refresh ({{settings.previewer.autoRefresh && 'enabled' || 'disabled'}})" tooltip-placement="bottom" tooltip-append-to-body="true"><i class="fa fa-refresh"></i></button>
+	  </div>
+    <button class="btn btn-xs btn-primary" ng-click="workspace.activate(workspace.split(paneNum, true))" tooltip="Split horizontally" tooltip-placement="bottom" tooltip-append-to-body="true">|</button>
+    <button class="btn btn-xs btn-primary" ng-click="workspace.activate(workspace.split(paneNum, false))" tooltip="Split vertically" tooltip-placement="bottom" tooltip-append-to-body="true">-</button>
+    <button class="btn btn-xs btn-danger" ng-click="workspace.close(paneNum)" tooltip="Close" tooltip-placement="bottom" tooltip-append-to-body="true">X</button>
+  </div>
+</div>
+<div class="pane-content previewer" ng-class="{qrcode: showQRCode}" ng-click="workspace.activate(paneNum)">
+	<div class="qrcode-overlay" ng-class="{active: showQRCode}">
+		<h3>Scan the QR code below to open the preview on your phone of tablet</h3>
+		<p><a ng-href="{{previewUrl}}" target="_blank" ng-bind="previewUrl"></a></p>
+		<p><qrcode url="{{previewUrl}}" width="256" height="256"></qrcode></p>
+	</div>
+	<plunker-previewer></plunker-previewer>
+</div>

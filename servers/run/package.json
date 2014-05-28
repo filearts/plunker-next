@@ -1,0 +1,21 @@
+{
+  "name": "plunker-run",
+  "version": "0.0.0",
+  "description": "Real-time preview server of Plunker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Geoff Goodman",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "lru-cache": "~2.5.0",
+    "genid": "~0.1.0",
+    "boom": "~2.4.1",
+    "joi": "~3.1.0",
+    "mime": "~1.2.11",
+    "marked": "~0.3.2",
+    "request": "~2.36.0"
+  }
+}

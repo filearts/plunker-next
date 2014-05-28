@@ -1,0 +1,74 @@
+<div class="plunker-sidebar">
+  <file-tree tree="sidebar.tree"></file-tree>
+  <ul class="file-tree plunker-revisions fa-ul" ng-show="sidebar.project.isSaved()" ng-init="showHistory = false; maxRevisions = 5">
+    <li>
+      <div class="tree-entry tree-folder" ng-class="{collapsed: !showHistory}">
+        <div class="tree-inner" ng-click="showHistory = !showHistory">
+          <i class="tree-icon fa fa-li fa-history"></i>
+          <span class="tree-filename">History <span class="label label-default" ng-bind="sidebar.project.plunk.revisions.length | number" ng-show="!showHistory && sidebar.project.plunk.revisions"></span></span>
+        </div>
+        <div class="tree-bg"></div>
+      </div>
+      <ul class="file-tree fa-ul" ng-show="showHistory">
+        <li ng-repeat="revision in sidebar.project.plunk.revisions | orderBy:'-created_at' | limitTo:maxRevisions">
+          <div class="tree-entry tree-file">
+            <div class="tree-inner" ng-switch="revision.event">
+              <i class="tree-icon fa fa-li fa-save" ng-switch-when="update"></i>
+              <i class="tree-icon fa fa-li fa-asterisk" ng-switch-when="create"></i>
+              <i class="tree-icon fa fa-li fa-code-fork" ng-switch-when="fork"></i>
+              <span class="tree-filename">
+                <a class="user-ref" ng-bind="revision.user.username"></a>
+                <span ng-bind="{update: 'updated', 'create': 'created', fork: 'forked'}[revision.event]"></span>
+                <a class="tree-ref" url-state="{tree: revision.tree}" ng-bind="revision.tree | slice:10"></a>
+                <span class="reltime" ng-bind="revision.created_at | timeAgo"></span>
+              </span>
+            </div>
+            <div class="tree-bg"></div>
+          </div>
+        </li>
+        <li ng-if="sidebar.project.plunk.revisions.length > maxRevisions">
+          <div class="tree-entry tree-file">
+            <div class="tree-inner" ng-click="$parent.maxRevisions = maxRevisions + 5">
+              <i class="tree-icon fa fa-li fa-plus-square-o"></i>
+              <span class="tree-filename">Show more...</span>
+            </div>
+            <div class="tree-bg"></div>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="file-tree plunker-collections fa-ul" ng-show="sidebar.project.isSaved()" ng-init="showCollections = false; maxCollections = 5">
+    <li>
+      <div class="tree-entry tree-folder" ng-class="{collapsed: !showCollections}">
+        <div class="tree-inner" ng-click="showCollections = !showCollections">
+          <i class="tree-icon fa fa-li fa-hdd-o"></i>
+          <span class="tree-filename">Collections <span class="label label-default" ng-bind="sidebar.project.plunk.collections.length | number" ng-show="!showHistory && sidebar.project.plunk.collections"></span></span>
+        </div>
+        <div class="tree-bg"></div>
+      </div>
+      <ul class="file-tree fa-ul" ng-show="showCollections">
+        <li ng-repeat="coll in sidebar.project.plunk.collections | limitTo:maxCollections">
+          <div class="tree-entry tree-file">
+            <div class="tree-inner" >
+              <i class="tree-icon fa fa-li fa-star-o"></i>
+              <span class="tree-filename">
+                <a ng-href="/{{coll}}" target="_self" ng-bind="coll"></a>
+              </span>
+            </div>
+            <div class="tree-bg"></div>
+          </div>
+        </li>
+        <li ng-if="sidebar.project.plunk.revisions.length > maxCollections">
+          <div class="tree-entry tree-file">
+            <div class="tree-inner" ng-click="$parent.maxCollections = maxCollections + 5">
+              <i class="tree-icon fa fa-li fa-plus-square-o"></i>
+              <span class="tree-filename">Show more...</span>
+            </div>
+            <div class="tree-bg"></div>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

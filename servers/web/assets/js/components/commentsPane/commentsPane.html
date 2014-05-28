@@ -1,0 +1,56 @@
+<div class="plunker-comments-pane" ng-if="opened">
+
+  <div class="comment-area">
+    <ul class="list-unstyled" ng-if="comments.length">
+      <li class="comment panel panel-default" ng-repeat="comment in comments | orderBy:'-updated_at'">
+        <div class="panel-heading comment-header">
+          <span class="user"><a ng-bind="comment.user.username"></a></span>
+          <span class="datetime" ng-bind="comment.created_at | timeAgo"></span>
+        </div>
+        <div class="panel-body">
+          <div markdown="comment.body"></div>
+        </div>
+        <div class="panel-footer" ng-if="comment.tree">
+          <i class="fa fa-paperclip"></i>
+          <a class="tree-ref" url-state="{tree: comment.tree}" ng-bind="comment.tree | slice:10"></a>
+        </div>
+      </li>
+    </ul>
+    <div class="col-xs-12 panel panel-body" ng-if="!comments.length">
+      <h3>No comments</h3>
+      <p>
+        No comments have been made on this project. To add a comment, use the textarea at the bottom of thise pane.
+        You can use the full power of markdown formatting in your comments.
+      </p>
+      <p>
+        You can also attach any edits you have made to the project's code. Click
+        the paperclip icon below and your code will be attached to your comment.
+        Others will be able to view the code associated with your comment.
+      </p>
+    </div>
+  </div>
+  
+  <div class="comment-draft">
+    <form ng-submit="addComment(draft)" ng-if="visitor.isMember()">
+      <div class="plunk-comment-box-outline">
+        <div plunker-comments-box ng-model="draft.body"></div>
+      </div>
+      <div class="comment-foot">
+        <div class="pull-right">
+          <button type="button" class="btn btn-xs btn-link" ng-class="{active: draft.files}" ng-click="toggleAttachment()" tooltip="Attach your current code to the comment">
+            <i class="fa fa-paperclip"></i>
+          </button>
+          <button type="button" class="btn btn-xs btn-link" ng-click="reset()" tooltip="Reset the comment box">
+            <i class="fa fa-ban"></i>
+          </button>
+          <button type="submit" ng-disabled="!draft.body" class="btn btn-xs btn-primary">Comment</button>
+        </div>
+        <p class="help-block">* Comments are markdown formatted</p>
+      </div>
+    </form>
+    <div class="col-xs-12" ng-if="!visitor.isMember()">
+      <h4>You must log in to comment</h4>
+      <p>Only registered users can post comments. Please log in via the menu in the top right.</p>
+    </div>
+  </div>
+</div>

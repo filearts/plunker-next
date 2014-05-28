@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <base href="/edit">
+    <title ng-bind="title">Plunker - Editor</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/editor/editor-b157128f.css">
+    <!-- endinject -->
+    <script src="vendor/ace/src-noconflict/ace.js"></script>
+    <!-- inject:js -->
+    <script src="/editor/editor.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:json -->
+    <script>angular.module("plunker.service.config", []).value("config",JSON.parse(atob("ewoJInVybCI6IHsKCQkiYXBpIjogImh0dHA6Ly9sb2NhbGhvc3Q6ODAwMSIsCgkJInJ1biI6ICJodHRwOi8vbG9jYWxob3N0OjgwMDIiLAoJCSJ3ZWIiOiAiaHR0cDovL2xvY2FsaG9zdDo4MDAwIgoJfQp9")));</script>
+    <!-- endinject -->
+  </head>
+
+  <body ng-controller="EditorController" plunker-overlay="editor">
+    <div fa-pane="container" keybindings >
+      <div fa-pane="toolbar" pane-anchor="north" pane-size="38px">
+        <h1 class="plunker-brand"><a href="/" target="_self">Plunker</a></h1>
+        <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
+        <plunker-toolbar></plunker-toolbar>
+      </div>
+      
+      <div fa-pane="sidebar" pane-anchor="west" pane-size="250px" pane-min="200px" pane-max="300px" pane-handle="4" pane-no-toggle="true" >
+        <plunker-sidebar></plunker-sidebar>
+      </div>
+      
+      <div fa-pane="comments" pane-anchor="east" pane-size="25%" pane-min="400px" pane-max="50%" pane-handle-obj="{open: '4px', closed: 0}" pane-closed="true" pane-no-toggle="true">
+        <plunker-comments-pane></plunker-comments-pane>
+      </div>
+      
+      <div fa-pane="workspace">
+        <div plunker-updater-overlay></div>
+        <plunker-workspace></plunker-workspace>
+      </div>
+    </div>
+    
+    <div growl></div>
+  </body>
+
+</html>

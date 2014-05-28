@@ -1,0 +1,84 @@
+.plunker-comments-pane {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  
+  .comment-area {
+    order: 1;
+    flex: 1 1 auto;
+  }
+  
+  .comment-draft {
+    order: 2;
+    flex: 0 0 auto;
+    padding: 4px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+    
+    .plunk-comment-box-outline {
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      transition: height 0.5x linear;
+      padding: 4px 0;
+    }
+    
+    .comment-foot {
+      margin-top: 6px;
+    }
+    
+    .help-block {
+      margin: 0;
+      font-size: 90%;
+      font-style: italic;
+    }
+    
+    .comment-submit {
+      margin-top: 6px;
+      text-align: right;
+    }
+  }
+  
+  .comment-area {
+    background-color: #eee;
+    padding: 4px;
+    overflow: auto;
+  }
+  
+  .comment {
+    margin-bottom: 15px;
+    border-radius: 0;
+    
+    .panel-heading {
+      padding: 4px 15px;
+    }
+    
+    .panel-body {
+      padding: 8px 15px;
+    }
+    
+    .panel-footer {
+      padding: 4px 15px;
+      font-size: 80%;
+      background-color: #ffffff;
+    }
+  }
+  
+  .markdown {
+    pre {
+      background: white;
+      max-height: 160px;
+      overflow: auto;
+      
+      &>code {
+        display: block;
+      }
+    }
+  }
+}

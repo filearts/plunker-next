@@ -1,0 +1,59 @@
+ul.plunker-taglist {
+  margin: 0; padding: 0; border: 0;
+  list-style: none;
+  display: inline-block;
+  overflow: hidden;
+
+  li {
+    margin-right: 1em;
+  }
+  
+  li, a {
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    position: relative;
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  a {
+    margin-left:8px;
+    padding:0 6px 0 8px;
+    background:#428bca;
+    color:#fff;
+    text-decoration:none;
+    -moz-border-radius-bottomright:4px;
+    -webkit-border-bottom-right-radius:4px;	
+    border-bottom-right-radius:4px;
+    -moz-border-radius-topright:4px;
+    -webkit-border-top-right-radius:4px;	
+    border-top-right-radius:4px;	
+  }
+  a:before {
+    content:"";
+    float:left;
+    position:absolute;
+    top:0;
+    left:-8px;
+    width:0;
+    height:0;
+    border-color:transparent #428bca transparent transparent;
+    border-style:solid;
+    border-width:8px 8px 8px 0;		
+  }
+  a:after {
+    content:"";
+    position:absolute;
+    top:6px;
+    left:0;
+    float:left;
+    width:4px;
+    height:4px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    background:#fff;
+  }
+  a:hover{background:#555;}
+  a:hover:before{border-color:transparent #555 transparent transparent;}
+}

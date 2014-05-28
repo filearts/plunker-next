@@ -1,0 +1,83 @@
+<form name="collForm" ng-submit="save(coll)" novalidate>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+    <h4>Create a new collection</h4>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-danger alert-dismissable" ng-if="error">
+      <button type="button" class="close" ng-click="error=null" aria-hidden="true">&times;</button>
+      <span ng-bind="error"></span>
+    </div>
+    <div class="form-group">
+      <label>Collection name:</label>
+      <div class="input-group">
+        <span class="input-group-addon" ng-bind-template="{{visitor.user.username}}/"></span>
+        <input class="form-control" type="text" name="name" placeholder="Name the collection" ng-model="coll.name" ng-pattern="/^[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z]$/" required>
+      </div>
+      <p class="help-block">
+        The name must start and end with a letter and can only contain letters, numbers, underscore and hyphens.
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Title:</label>
+      <input class="form-control" type="text" name="title" placeholder="Short description of the collection" ng-model="coll.title" required>
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <plunker-marked class="form-control" ng-model="coll.description"></plunker-marked>
+      <p class="help-block">* Add long-form description to this collection (markdown formatted)</p>
+    </div>
+    <div class="form-group">
+      <label>Collection features:</label>
+      <div class="media">
+        <button type="button" class="btn btn-default btn-icon pull-left media-object" ng-class="{'btn-success': coll.is_restricted}" ng-model="coll.is_restricted" btn-checkbox>
+          <i class="fa fa-user fa-fw fa-3x"></i>
+        </button>
+        <div class="media-body">
+          <h4>Restricted</h4>
+          <p>
+            Users are only allowed to publish their own plunks to this type of
+            collection.
+          </p>
+        </div>
+      </div>
+      <div class="media" ng-class="{'text-muted': !visitor.user.is_premium}">
+        <button type="button" class="btn btn-default btn-icon pull-left media-object" ng-disabled="!visitor.user.is_premium" ng-class="{'btn-success': coll.is_private}" ng-model="coll.is_private" btn-checkbox>
+          <i class="fa fa-eye-slash fa-fw fa-3x"></i>
+        </button>
+        <div class="media-body">
+          <h4>Private</h4>
+          <p>
+            Private collections are invite-only and are only be visible to the
+            members of the collection.
+            <span ng-if="!visitor.user.is_premium">
+              (This is a <a href="/{{visitor.user.username}}/account">PRO</a> feature.)
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="media" ng-class="{'text-muted': !visitor.user.is_premium}">
+        <button type="button" class="btn btn-default btn-icon pull-left media-object" ng-disabled="!visitor.user.is_premium" ng-class="{'btn-success': coll.is_curated}" ng-model="coll.is_curated" btn-checkbox>
+          <i class="fa fa-filter fa-fw fa-3x"></i>
+        </button>
+        <div class="media-body">
+          <h4>Curated</h4>
+          <p>
+            Plunks published to this type of collection are added to a
+            curation queue to be accepted or rejected by the collection's 
+            curators.
+            <span ng-if="!visitor.user.is_premium">
+              (This is a <a href="/{{visitor.user.username}}/account">PRO</a> feature.)
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="pull-right">
+      <button type="button" class="btn btn-link" ng-click="$dismiss()">Cancel</button>
+      <button type="submit" class="btn btn-primary" ng-disabled="collForm.$invalid">Create</button>
+    </div>
+  </div>
+</form>

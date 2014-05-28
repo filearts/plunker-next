@@ -1,0 +1,19 @@
+<div fa-pane="container" keybindings plunker-overlay="editor">
+  <div fa-pane="toolbar" pane-anchor="north" pane-size="38px">
+    <h1 class="plunker-brand"><a href="/">Plunker</a></h1>
+    <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
+    <plunker-toolbar></plunker-toolbar>
+  </div>
+  
+  <div fa-pane="sidebar" pane-anchor="west" pane-size="250px" pane-min="200px" pane-max="300px" pane-handle="4px" >
+    <plunker-sidebar></plunker-sidebar>
+  </div>
+  
+  <div fa-pane="workspace">
+    <div plunker-updater-overlay></div>
+    <plunker-workspace></plunker-workspace>
+  </div>
+</div>
+
+<div growl></div>
+<div ui-view></div>

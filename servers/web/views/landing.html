@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Plunker{{subtitle}}</title>
+    <link data-require="font-awesome@*" data-semver="4.1.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/landing/landing-9dddfbdd.css">
+    <!-- endinject -->
+    <script src="/vendor/ace/src-noconflict/ace.js"></script>
+    <!-- inject:js -->
+    <script src="/landing/landing.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:json -->
+    <script>angular.module("plunker.service.config", []).value("config",JSON.parse(atob("ewoJInVybCI6IHsKCQkiYXBpIjogImh0dHA6Ly9sb2NhbGhvc3Q6ODAwMSIsCgkJInJ1biI6ICJodHRwOi8vbG9jYWxob3N0OjgwMDIiLAoJCSJ3ZWIiOiAiaHR0cDovL2xvY2FsaG9zdDo4MDAwIgoJfQp9")));</script>
+    <!-- endinject -->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <h1 class="plunker-brand"><a href="/">Plunker</a></h1>
+        <plunker-user-pane class="pull-right toolbar-group"></plunker-user-pane>
+        <div class="toolbar-ops">
+          <div class="toolbar-group">
+            <div class="btn-group">
+              <a class="btn btn-sm btn-primary" href="/edit">New Plunk</a>
+            </div>
+          </div>
+          <div class="toolbar-group">
+            {{#if plunk}}
+            <div class="btn-group">
+              <a class="btn btn-sm btn-success" href="/edit/{{plunk.id}}">Edit</a>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </nav>
+    {{{ content }}}
+    <div growl></div>
+  </body>
+
+</html>

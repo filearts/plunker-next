@@ -1,0 +1,29 @@
+{
+  "name": "plunker-api",
+  "version": "0.0.0",
+  "description": "Plunker API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Geoff Goodman",
+  "license": "MIT",
+  "dependencies": {
+    "boom": "~2.2.2",
+    "hoek": "~1.5.1",
+    "mime": "~1.2.11",
+    "lodash": "~2.4.1",
+    "git-object-blob": "0.0.1",
+    "git-object-tree": "0.0.5",
+    "git-object-hash": "0.0.8",
+    "when": "~3.0.0",
+    "genid": "~0.1.0",
+    "hapi": "~4.0.0",
+    "joi": "~3.1.0",
+    "iron": "~2.0.1",
+    "lru-cache": "~2.5.0",
+    "nano": "~5.8.0",
+    "padded-semver": "~2.0.5",
+    "semver": "~2.2.1"
+  }
+}

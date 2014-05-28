@@ -1,0 +1,38 @@
+<div class="plunk-h media">
+  <div class="pull-left plunk-image">
+    <div class="plunk-image-overlay">
+      <div class="actions">
+        <a class="btn btn-primary btn-sm" href="/edit/{{id}}">Edit</a>
+        <a class="btn btn-success btn-sm" href="/plunks/{{id}}">View</a>
+      </div>
+    </div>
+    <a href="/plunks/{{id}}">
+      <img class="media-object" src="http://placehold.it/156x117">
+    </a>
+  </div>
+  <div class="media-body">
+    <h3>
+      <a href="/plunks/{{id}}">{{description}}</a>
+    </h3>
+    {{#if fork_of}}
+    <div class="forked text-muted"><i class="fa fa-code-fork"></i> Forked from <a href="/plunks/{{fork_of}}">{{fork_of}}</a></div>
+    {{/if}}
+    <div class="authored text-muted">
+      Created by <a href="/users/{{user.username}}">{{user.username}}</a> <span ng-bind="'{{created_at}}' | timeAgo"></span>
+    </div>
+    <div class="tags">
+      <ul class="list-inline">
+        {{#each tags}}
+        <li>
+          <a class="label label-primary" href="/tags/{{this}}">{{this}}</a>
+        </li>
+        {{/each}}
+        {{#each packages}}
+        <li>
+          <a class="label label-success" href="/packages/{{name}}">{{name}}@{{semver}}</a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

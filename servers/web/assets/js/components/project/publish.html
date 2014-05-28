@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+  <h4>Publish project</h4>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="col-xs-6">
+      <h4>Global collections</h4>
+      <div class="list-group">
+        <a class="list-group-item" ng-click="$close(coll.id)" ng-repeat="coll in globalCollections">
+          <strong ng-bind="coll.title"></strong>
+          <i class="fa fa-eye-slash fa-fw" ng-if="coll.is_private" tooltip="Invite-only collection that is only visible to members"></i>
+          <i class="fa fa-user fa-fw" ng-if="coll.is_restricted" tooltip="Users can only publish their own plunks to this collection"></i>
+          <i class="fa fa-filter fa-fw" ng-if="coll.is_curated" tooltip="Plunks published to this collection must be accepted before they appear in the collection"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <h4>My collections</h4>
+      <div class="list-group">
+        <a class="list-group-item" ng-click="$close(coll.id)" ng-repeat="coll in ownCollections">
+          <strong ng-bind="coll.title"></strong>
+          <i class="fa fa-eye-slash fa-fw" ng-if="coll.is_private" tooltip="Invite-only collection that is only visible to members"></i>
+          <i class="fa fa-user fa-fw" ng-if="coll.is_restricted" tooltip="Users can only publish their own plunks to this collection"></i>
+          <i class="fa fa-filter fa-fw" ng-if="coll.is_curated" tooltip="Plunks published to this collection must be accepted before they appear in the collection"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-link" ng-click="$dismiss()">Cancel</button>
+</div>

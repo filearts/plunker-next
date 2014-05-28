@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="col-xs-4">
+    <h1>
+      {{user.username}}
+      <small>Joined <span ng-bind="'{{user.created_at}}' | timeAgo">{{user.created_at}}</span></small>
+    </h1>
+    {{#if user.description}}
+    <p class="lead">{{user.description}}</p>
+    {{/if}}
+    <dl class="dl-vertical">
+      {{#if user.website_url}}
+      <dt>Website</dt>
+      <dd><a href="{{user.website_url}}">{{user.website_url}}</a></dd>
+      {{/if}}
+      {{#if user.company}}
+      <dt>Company</dt>
+      <dd>{{user.company}}</dd>
+      {{/if}}
+      {{#if user.location}}
+      <dt>Location</dt>
+      <dd>{{user.location}}</dd>
+      {{/if}}
+    </dl>
+  </div>
+  
+  <div class="col-xs-8">
+    <h2>Projects</h2>
+    <div class="plunk-list">
+      {{#each plunks}}
+      <div id="{{id}}" class="col-xs-12 col-lg-6">
+        {{> plunk}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

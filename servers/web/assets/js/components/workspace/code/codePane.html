@@ -1,0 +1,14 @@
+<div class="pane-header">
+  <div class="pane-title" ng-bind="entry.getPath()" ng-click="workspace.activate(paneNum)"></div>
+  <div class="pane-actions">
+  	<div class="pane-options">
+	  	<button ng-if="isMarkdown(entry.getFilename())" class="btn btn-xs btn-link" ng-click="previewMarkdown(entry.contents)" tooltip="Preview the rendered markdown" tooltip-placement="bottom" tooltip-append-to-body="true"><i class="fa fa-play-circle"></i></button>
+	  </div>
+    <button class="btn btn-xs btn-primary" ng-click="workspace.activate(workspace.split(paneNum, true))" tooltip="Split horizontally" tooltip-placement="bottom" tooltip-append-to-body="true">|</button>
+    <button class="btn btn-xs btn-primary" ng-click="workspace.activate(workspace.split(paneNum, false))" tooltip="Split vertically" tooltip-placement="bottom" tooltip-append-to-body="true">-</button>
+    <button class="btn btn-xs btn-danger" ng-click="workspace.close(paneNum)" tooltip="Close" tooltip-placement="bottom" tooltip-append-to-body="true">X</button>
+  </div>
+</div>
+<div class="pane-content" ng-click="workspace.activate(paneNum)">
+	<code-editor class="code-editor" edit-session="entry.editSession"></code-editor>
+</div>

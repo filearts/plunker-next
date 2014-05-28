@@ -1,0 +1,7 @@
+<script type="text/javascript">
+  if (window.opener && window.opener.postMessage) {
+    window.opener.postMessage('{{payload}}', 'http://localhost:8000');
+  }
+  
+  window.close();
+</script>

@@ -1,0 +1,21 @@
+<div fa-pane="toolbar" pane-anchor="north" pane-size="30px">
+  <h4 class="brand">Plunker</h4>
+  <div class="plunk-ops">
+    <div class="btn-group" ng-show="project.isSavable() && project.isForkable()">
+      <button class="btn btn-primary" ng-click="save()">Save</button>
+      <button class="btn btn-primary dropdown-toggle">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a ng-click="fork()">Fork</a></li>
+      </ul>
+    </div>
+    <div class="btn-group" ng-show="project.isSavable() && !project.isForkable()">
+      <button class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+    <div class="btn-group" ng-show="!project.isSavable() && project.isForkable()">
+      <button class="btn btn-default" ng-show="project.isForkable()">Fork</button>
+    </div>
+  </div>
+</div>

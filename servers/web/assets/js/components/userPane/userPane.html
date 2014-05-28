@@ -1,0 +1,16 @@
+<div class="plunker-userpane" ng-switch="userPane.visitor.isMember()">
+  <div ng-switch-when="true" class="dropdown">
+    <button class="btn btn-sm btn-default dropdown-toggle">
+      <span ng-bind="userPane.visitor.user.username"></span>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu pull-left">
+      <li><a href="javascript:void(0)" ng-click="userPane.showCollectionsManager()">Manage collections</a></li>
+      <li class="divider"></li>
+      <li><a href="javascript:void(0)" ng-click="userPane.visitor.logout()">Logout</a></li>
+    </ul>
+  </div>
+  <div ng-switch-when="false">
+    <button class="btn btn-sm btn-default" ng-click="userPane.showLoginWindow()">Login</button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="pane-header">
+  <div class="pane-title" ng-click="workspace.activate(paneNum)">Unassigned pane</div>
+  <div class="pane-actions">
+    <button class="btn btn-xs btn-primary" ng-click="workspace.activate(workspace.split(paneNum, true))" tooltip="Split horizontally" tooltip-placement="bottom" tooltip-append-to-body="true">|</button>
+    <button class="btn btn-xs btn-primary" ng-click="workspace.activate(workspace.split(paneNum, false))" tooltip="Split vertically" tooltip-placement="bottom" tooltip-append-to-body="true">-</button>
+    <button class="btn btn-xs btn-danger" ng-click="workspace.close(paneNum)" tooltip="Close" tooltip-placement="bottom" tooltip-append-to-body="true">X</button>
+  </div>
+</div>
+<div class="pane-content" ng-click="workspace.activate(paneNum)">
+  <div class="col-xs-12">
+  	<h2>Nothing has been assigned to this pane</h2>
+  	<p>
+  	  Click an unopened file from the file tree to open that file in this pane.
+  	  Alternatively, hit the preview button to open the preview window in this
+  	  pane if the previewer is not already open.
+  	</p>
+	</div>
+</div>

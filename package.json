@@ -1,0 +1,19 @@
+{
+  "name": "plunker-next",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "good": "~2.0.0",
+    "hoek": "~2.2.0",
+    "hapi": "^4.1.4",
+    "joi": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Geoff Goodman",
+  "license": "ISC"
+}

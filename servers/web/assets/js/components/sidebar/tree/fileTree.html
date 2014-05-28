@@ -1,0 +1,29 @@
+<ul class="file-tree fa-ul">
+  <li ng-repeat="entry in tree | toArray | orderBy:'filename'">
+    <div class="tree-entry tree-folder" ng-if="entry.isDirectory()" ng-class="{collapsed: collapsed}">
+      <div class="tree-inner" ng-click="collapsed=!collapsed">
+        <i class="tree-icon fa-li fa fa-folder{{!collapsed && '-open' || ''}}"></i>
+        <span class="tree-filename" >{{entry.filename}} <span class="label label-default" ng-show="collapsed" ng-bind="entry.children.length"></span></span>
+        <div class="tree-actions">
+          <button class="btn btn-xs btn-link tree-add-file" tooltip="Create directory" tooltip-append-to-body="true" ng-click="createDir($event, entry)"><i class="fa fa-folder"></i></button>
+          <button class="btn btn-xs btn-link tree-add-dir" tooltip="Create file" tooltip-append-to-body="true" ng-click="createFile($event, entry)"><i class="fa fa-file"></i></button>
+          <button class="btn btn-xs btn-link tree-remove-entry" tooltip="Delete this directory and all its files" tooltip-append-to-body="true" ng-click="remove($event, entry)" ng-if="!entry.isRoot"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="tree-bg"></div>
+      <file-tree-recurse tree="entry.children"></file-tree-recurse>
+    </div>
+    <div class="tree-entry tree-file" ng-if="entry.isFile()" ng-class="{active: isActive(entry), open: isOpen(entry)}">
+      <div class="tree-inner" ng-click="open($event, entry)" ng-dblclick="rename($event, entry)">
+        <i class="tree-icon fa-li fa fa-file-text{{!isOpen(entry) && '-o' || ''}}"></i>
+        <div class="tree-filename" ng-bind="entry.filename"></div>
+        <div class="tree-actions">
+          <button class="btn btn-xs btn-link tree-open-down" tooltip="Open in new space below (CTRL-Click)" tooltip-append-to-body="true" ng-hide="isOpen(entry)" ng-click="open($event, entry, {split: 'parent'})"><i class="fa fa-caret-square-o-down"></i></button>
+          <button class="btn btn-xs btn-link tree-open-right" tooltip="Open in new space to the right (SHIFT-Click)" tooltip-append-to-body="true" ng-hide="isOpen(entry)" ng-click="open($event, entry, {split: 'child'})"><i class="fa fa-caret-square-o-right"></i></button>
+          <button class="btn btn-xs btn-link tree-remove-entry" tooltip="Delete this file" tooltip-append-to-body="true" ng-click="remove($event, entry)"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="tree-bg"></div>
+    </div>
+  </li>
+</ul>

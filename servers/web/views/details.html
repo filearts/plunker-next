@@ -1,0 +1,57 @@
+<div class="preview-frame-full">
+  <iframe src="{{config.url.run}}/sha/{{previewSha}}/" allowtransparency="true" frameborder="0"></iframe>
+</div>
+
+<div class="container-fluid details">
+  <div class="col-xs-6">
+    <h1>{{plunk.description}}</h1>
+    {{#if plunk.fork_of}}
+    <div class="forked text-muted"><i class="fa fa-code-fork"></i> Forked from <a href="/plunks/{{plunk.fork_of}}">{{plunk.fork_of}}</a></div>
+    {{/if}}
+    <p class="author">
+      Created by
+      <a class="author" href="/users/{{plunk.user.username}}">{{plunk.user.username}}</a>
+      <span ng-bind="'{{plunk.created_at}}' | timeAgo"></span>
+    </p>
+    <div class="tags">
+      <ul class="list-inline">
+        {{#each plunk.tags}}
+        <li>
+          <a class="label label-primary" href="/tags/{{this}}">{{this}}</a>
+        </li>
+        {{/each}}
+        {{#each plunk.packages}}
+        <li>
+          <a class="label label-success" href="/packages/{{name}}">{{name}}@{{semver}}</a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <h3>Comments</h3>
+    {{#each comments.results}}
+    <div class="panel">
+      <div class="panel-heading">
+        <a class="author" href="/users/{{user.username}}">{{user.username}}</a>
+        <span ng-bind="'{{created_at}}' | timeAgo"></span>
+      </div>
+      <div class="panel-body" markdown>{{body}}</div>
+      {{#if tree}}
+      <div class="panel-footer">
+        <i class="fa fa-paperclip"></i>
+        <a class="tree-ref" href="/edit/{{../../plunk.id}}?t={{tree}}" ng-bind="'{{tree}}' | slice:10">{{tree}}</a>
+      </div>
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="col-xs-6">
+    {{#if plunk.readme}}
+    <h3>Readme:</h3>
+    <div class="well readme" markdown>{{plunk.readme}}</div>
+    {{/if}}
+  </div>
+  <div class="col-xs-4">
+  </div>
+</div>

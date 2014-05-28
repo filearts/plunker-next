@@ -1,0 +1,94 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+  <h4>Load a template</h4>
+</div>
+<div class="modal-body" ng-switch="search.state">
+  <div class="search-bar">
+    <form ng-submit="find(search.box)">
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="Search..." type="text" ng-model="search.box">
+          <span class="input-group-btn">
+            <button class="btn btn-default"><i class="fa fa-search"></i></button>
+          </span>
+        </div>
+        <span class="help-block">
+          You can refine your search using special syntax.
+          To limit your search to plunks with a certain tag, use: <code>[tag]</code>.
+          For plunks with a specific package, use: <code>&lt;package&gt;</code>.
+          To search for plunks that belong to a collection, use: <code>in:collection</code>.
+        </span>
+      </div>
+    </form>
+  </div>
+  <div class="row" ng-switch-when="results">
+    <div class="col-xs-12">
+      <h3>Search results: <code ng-bind="search.term"></code></h3>
+      <ul class="media-list" ng-if="search.results.length">
+        <li class="media" ng-repeat="result in search.results">
+          <div class="media-body">
+            <h4 class="media-heading">
+              <a ng-click="$close(result)" ng-bind="result.description"></a>
+            </h4>
+            <p ng-if="result.fork_of"><i class="fa fa-code-fork"></i> Forked from &<a ng-bind="result.fork_of"></a></p>
+            <p ng-bind="result.readme | slice:'140'"></p>
+            <ul class="list-inline">
+              <li ng-repeat="tag in result.tags"><a><span class="label label-primary" ng-bind="tag"></span></a></li>
+              <li ng-repeat="package in result.packages"><a><span class="label label-success" ng-bind-template="{{package.name}}@{{package.semver}}"></span></a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <p ng-if="!search.results.length">
+        Your query did not return any results. Please try a different search.
+      </p>
+    </div>
+  </div>
+  <div class="row" ng-switch-when="searching">
+    <div class="col-xs-6">
+      <h3>Searching for: <code ng-bind="search.term"></code></h3>
+    </div>
+  </div>
+  <div class="row" ng-switch-when="default">
+    <div class="col-xs-6">
+      <h3>Favorites</h3>
+      <ul class="media-list" ng-if="favorites.length">
+        <li class="media" ng-repeat="result in favorites">
+          <div class="media-body">
+            <h4 class="media-heading">
+              <a ng-click="$close(result)" ng-bind="result.description"></a>
+            </h4>
+            <p ng-if="result.fork_of"><i class="fa fa-code-fork"></i> Forked from &<a ng-bind="result.fork_of"></a></p>
+            <p ng-bind="result.readme | slice:'140'"></p>
+            <ul class="list-inline">
+              <li ng-repeat="tag in result.tags"><a><span class="label label-primary" ng-bind="tag"></span></a></li>
+              <li ng-repeat="package in result.packages"><a><span class="label label-success" ng-bind-template="{{package.name}}@{{package.semver}}"></span></a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <p ng-if="!favorites">Loading favorite templates...</p>
+      <p ng-if="favorites && !favorites.length">You have no favorite templates</p>
+    </div>
+    <div class="col-xs-6">
+      <h3>Most popular</h3>
+      <ul class="media-list" ng-if="popular.length">
+        <li class="media" ng-repeat="result in popular">
+          <div class="media-body">
+            <h4 class="media-heading">
+              <a ng-click="$close(result)" ng-bind="result.description"></a>
+            </h4>
+            <p ng-if="result.fork_of"><i class="fa fa-code-fork"></i> Forked from &<a ng-bind="result.fork_of"></a></p>
+            <p ng-bind="result.readme | slice:'140'"></p>
+            <ul class="list-inline">
+              <li ng-repeat="tag in result.tags"><a><span class="label label-primary" ng-bind="tag"></span></a></li>
+              <li ng-repeat="package in result.packages"><a><span class="label label-success" ng-bind-template="{{package.name}}@{{package.semver}}"></span></a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <p ng-if="!popular">Loading popular templates...</p>
+      <p ng-if="popular && !popular.length">No popular templates found</p>
+    </div>
+  </div>
+</div>

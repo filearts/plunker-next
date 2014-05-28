@@ -1,0 +1,44 @@
+{
+  "name": "plunker-web",
+  "version": "0.0.0",
+  "description": "Plunker Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Geoff Goodman",
+  "license": "MIT",
+  "dependencies": {
+    "boom": "~2.2.2",
+    "hoek": "~1.5.1",
+    "genid": "~0.1.0",
+    "lodash": "~2.4.1",
+    "passport": "~0.2.0",
+    "passport-github": "~0.1.5",
+    "iron": "~2.0.1",
+    "passport-google-oauth": "~0.1.5",
+    "passport-twitter": "~1.0.2",
+    "request": "~2.34.0",
+    "lru-cache": "~2.5.0",
+    "highland": "~1.22.0",
+    "marked": "~0.3.2",
+    "node-summary": "~1.0.0",
+    "catbox": "~2.2.1",
+    "when": "~3.2.1",
+    "handlebars": "^2.0.0-alpha.4"
+  },
+  "devDependencies": {
+    "passport-dropbox-oauth2": "~0.1.5",
+    "run-sequence": "^0.3.6",
+    "vinyl-source-stream": "^0.1.1",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-util": "^2.2.14",
+    "gulp-rev": "^0.4.0",
+    "gulp-inject": "^0.4.1",
+    "gulp": "^3.6.2",
+    "gulp-less": "^1.2.3",
+    "watchify": "^0.10.1",
+    "coffeeify": "^0.6.0",
+    "brfs": "^1.1.1"
+  }
+}

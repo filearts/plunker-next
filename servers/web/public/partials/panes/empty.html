@@ -1,0 +1,11 @@
+<div class="pane-header">
+  <div class="pane-title" ng-click="$command('space.activate', {coords: {row: rowIndex, col: colIndex}})">Empty pane</div>
+  <div class="pane-actions">
+    <button class="btn btn-xs btn-primary" ng-click="$command('space.split', {direction: 'h', coords: {row: rowIndex, col: colIndex}, activateOnSplit: true})" tooltip="Split horizontally" tooltip-placement="bottom" tooltip-append-to-body="true">|</button>
+    <button class="btn btn-xs btn-primary" ng-click="$command('space.split', {direction: 'v', coords: {row: rowIndex, col: colIndex}, activateOnSplit: true})" tooltip="Split vertically" tooltip-placement="bottom" tooltip-append-to-body="true">-</button>
+    <button class="btn btn-xs btn-danger" ng-click="$command('space.close', {coords: {row: rowIndex, col: colIndex}})" tooltip="Close" tooltip-placement="bottom" tooltip-append-to-body="true">X</button>
+  </div>
+</div>
+<div class="pane-content" ng-click="$command('space.activate', {coords: {row: rowIndex, col: colIndex}})">
+	EMPTY
+</div>

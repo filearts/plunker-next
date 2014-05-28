@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+  <h4>Manage collections</h4>
+</div>
+<div class="modal-body" ng-switch="visitor.user.is_premium">
+  <div>
+    <h4>
+      <small class="small pull-right" ng-if="!visitor.user.is_premium" ng-bind-template="{{collections.length | number}} / 4"></small>
+      Collections
+    </h4>
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th>Collection</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr href="javascript:void(0)" ng-repeat="collection in collections">
+          <td>
+            <strong ng-bind="collection.id"></strong>
+            <i class="pull-right fa fa-eye-slash fa-fw" ng-if="collection.is_private" tooltip="Invite-only collection that is only visible to members"></i>
+            <i class="pull-right fa fa-user fa-fw" ng-if="collection.is_restricted" tooltip="Users can only publish their own plunks to this collection"></i>
+            <i class="pull-right fa fa-filter fa-fw" ng-if="collection.is_curated" tooltip="Plunks published to this collection must be accepted before they appear in the collection"></i>
+          </td>
+        </tr>
+        <tr ng-if="!collections.length">
+          <td colspan="99" class="text-muted">
+            You do not have any collections.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="99" ng-click="showCreateWindow()">
+            <em>Create collection...</em>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div ng-switch-default>
+    <h4>Become a PRO user</h4>
+    <p>
+      As a <em>basic</em> user, you are able to create <strong>4</strong>
+      collections. You are limited to creating <strong>public</strong>
+      and/or <strong>restricted</strong> collections.
+    </p>
+    <p>
+      To access the full power of Plunker collections and create unlimited
+      <strong>private</strong> and/or <strong>curated</strong> collections, you
+      must be a <code>POWER USER</code>.
+    </p>
+    <p class="text-center">
+      <button class="btn btn-primary">BECOME POWER USER</button>
+    </p>
+  </div>
+</div>

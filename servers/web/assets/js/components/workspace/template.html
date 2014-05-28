@@ -1,0 +1,8 @@
+<div class="plunker-workspace">
+  <div fa-pane>
+    <div fa-pane pane-anchor="west" pane-size="{{100/(workspace.layout.length - $index) + '&'}}" pane-min="80px" pane-handle="{{$index!=workspace.layout.length-1&&4}}px" pane-no-toggle="true" pane-order="{{colIndex}}" ng-repeat="(colIndex, verticalSplits) in workspace.layout">
+      <div class="pane-container" pane-min="80px" ng-class="{active: workspace.isActive([colIndex, rowIndex])}" fa-pane pane-anchor="north" pane-size="{{100/(verticalSplits.length-$index) + '&'}}" pane-handle="{{$index!=verticalSplits.length-1&&4}}px" pane-no-toggle="true" pane-order="{{rowIndex}}" ng-repeat="(rowIndex, paneId) in verticalSplits track by paneId" plunker-workspace-pane="{{paneId}}">
+      </div>
+    </div>
+  </div>
+</div>

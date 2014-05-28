@@ -1,0 +1,17 @@
+<div class="alert alert-danger" ng-show="error">
+  <button type="button" class="close" ng-click="error=''">×</button>
+  <span ng-bind="error"></span>
+</div>
+<div class="alert alert-success" ng-show="updating">
+  <button type="button" class="close" ng-click="updating=''">×</button>
+  <span ng-bind="updating"></span>
+</div>
+<form ng-submit="addPackage(pkgRef)">
+  <label>Add Package</label>
+  <div class="input-group">
+    <input typeahead="pkgRef.value as pkgRef.text for pkgRef in getPackages($viewValue) | filter:$viewValue" typeahead-wait-ms="200" class="form-control" type="text" placeholder="name@0.0.x" ng-model="pkgRef" />
+    <span class="input-group-btn">
+      <button class="btn btn-default">Add</button>
+    </span>
+  </div>
+</form>
